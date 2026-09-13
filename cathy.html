@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>@Catvenox ♡</title>
+  
+  <!-- Google Fonts for Y2K Aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark-red: #3a0007;
+      --accent-red: #c90a28;
+      --bright-red: #ff1e42;
+      --light-pink: #ffe6eb;
+      --card-bg: rgba(70, 4, 15, 0.75);
+      --border-red: rgba(255, 30, 66, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    /* Custom Y2K Cursor */
+    body, html, button, a, input {
+      cursor: url('https://64.media.tumblr.com/919030f54ed7aab068e7cf125526e9b1/11ae7c1ed8ee23a3-d0/s500x750/ac3914717d1d3c28a6c6924b922c9c5444b9c7fe.pnj'), auto !important;
+    }
+
+    body, html {
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Animated Moving Red Gradient Background */
+    .animated-bg {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(-45deg, #200004, #54000c, #8a0014, #300007, #c90a28);
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
+      z-index: -2;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Sparkles Layer */
+    #sparkle-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .y2k-star {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      fill: #ffffff;
+      filter: drop-shadow(0 0 6px var(--bright-red));
+      animation: sparkleFloat 5s ease-in-out infinite;
+      opacity: 0;
+    }
+
+    @keyframes sparkleFloat {
+      0% {
+        transform: translateY(0) scale(0.3) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.8;
+        transform: translateY(-30px) scale(1) rotate(45deg);
+      }
+      100% {
+        transform: translateY(-60px) scale(0.2) rotate(90deg);
+        opacity: 0;
+      }
+    }
+
+    /* Halftone Grid / Y2K Polka Pattern Overlay */
+    .dot-pattern {
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 16px 16px;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.6;
+    }
+
+    /* Layout Main Container */
+    .wrapper {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    /* Top Navigation Bar */
+    header {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-red);
+      border-radius: 20px;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      margin-bottom: 25px;
+    }
+
+    .site-title {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 0 10px var(--bright-red);
+      letter-spacing: 1px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-btn {
+      background: rgba(200, 10, 40, 0.3);
+      border: 1px solid var(--bright-red);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-transform: lowercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-btn:hover {
+      background: var(--bright-red);
+      box-shadow: 0 0 15px var(--bright-red);
+      transform: translateY(-2deg);
+    }
+
+    /* Layout Grid */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr;
+      gap: 20px;
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Y2K Framed Card Style */
+    .y2k-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-red);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      position: relative;
+    }
+
+    /* Top Dual Gallery Section */
+    .gallery-top {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 15px;
+    }
+
+    .frame-box {
+      background: rgba(20, 0, 5, 0.6);
+      border: 1px dashed var(--bright-red);
+      border-radius: 16px;
+      height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .frame-box.banner-box img,
+    .frame-box.side-gif-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Four Vertical Strip Columns Layout */
+    .strip-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .strip-item {
+      background: rgba(20, 0, 5, 0.6);
+      border: 1px solid var(--border-red);
+      border-radius: 14px;
+      height: 220px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .strip-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .strip-item:hover {
+      transform: scale(1.03);
+      border-color: var(--bright-red);
+      box-shadow: 0 0 15px rgba(255, 30, 66, 0.5);
+    }
+
+    /* Bottom Widget Section */
+    .widget-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.95);
+      color: #300007;
+      padding: 12px 25px;
+      border-radius: 30px;
+      margin-top: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    .widget-banner .dots {
+      color: var(--accent-red);
+    }
+
+    /* Sidebar Widgets */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .side-widget {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .side-widget h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      color: #fff;
+    }
+
+    .search-bar {
+      background: var(--accent-red);
+      border: none;
+      padding: 10px 18px;
+      border-radius: 20px;
+      color: white;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* Vertical Gallery Frame */
+    .gallery-frame {
+      width: 100%;
+      height: 280px;
+      background: rgba(20, 0, 5, 0.6);
+      border: 1px dashed var(--bright-red);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .gallery-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 0, 3, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      width: 440px;
+      max-width: 90%;
+      background: #2a0007;
+      border: 2px solid var(--bright-red);
+      border-radius: 20px;
+      padding: 30px 25px;
+      text-align: center;
+      box-shadow: 0 0 35px var(--bright-red);
+      position: relative;
+    }
+
+    .modal-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--light-pink);
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+      text-shadow: 0 0 8px var(--bright-red);
+    }
+
+    /* Modal Content Styling */
+    .modal-content-text {
+      font-family: 'Plus Jakarta Sans', monospace, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #ffe6eb;
+      text-align: left;
+      white-space: pre-line;
+      background: rgba(20, 0, 5, 0.5);
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px dashed var(--border-red);
+      word-wrap: break-word;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.4rem;
+    }
+
+    .close-btn:hover {
+      color: var(--bright-red);
+    }
+
+    @media (max-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+      .gallery-top {
+        grid-template-columns: 1fr;
+      }
+      .strip-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Layer -->
+  <div class="animated-bg"></div>
+  <div class="dot-pattern"></div>
+  <div id="sparkle-container"></div>
+
+  <div class="wrapper">
+    <!-- Header -->
+    <header>
+      <div class="site-title">@Catvenox ♡</div>
+      <div class="nav-buttons">
+        <button class="nav-btn" onclick="openModal('about me')">about me</button>
+        <button class="nav-btn" onclick="openModal('loved one')">loved one</button>
+      </div>
+    </header>
+
+    <!-- Main Section -->
+    <div class="grid-container">
+      
+      <!-- Left Column -->
+      <div class="main-content">
+        
+        <!-- Top Banner & Side GIF Box -->
+        <div class="y2k-card gallery-top">
+          <div class="frame-box banner-box">
+            <img src="https://i.pinimg.com/originals/90/03/48/90034831c155c872a69c36f22ebfc182.gif" alt="Banner GIF">
+          </div>
+          <div class="frame-box side-gif-box">
+            <img src="https://i.pinimg.com/originals/2c/47/d5/2c47d5d9614b9fbdb161338e2e73e888.gif" alt="Side Box GIF">
+          </div>
+        </div>
+
+        <!-- Four Vertical Media Strips -->
+        <div class="y2k-card strip-grid">
+          <div class="strip-item">
+            <img src="https://media.discordapp.net/attachments/1548278052759277680/1548306942395424929/ebbfcb95833fe120fe993c10f198b65c.jpg?ex=6aa694b5&is=6aa54335&hm=8df4661795715bc08b08a03eef2e670e49d600e533dfadb6734fa256c7dd90a0&=&format=webp" alt="Visual 1">
+          </div>
+          <div class="strip-item">
+            <img src="https://media.discordapp.net/attachments/1548278052759277680/1548306942659797112/93ccb4ff4b5dd1adf1304a95f21cec7e.jpg?ex=6aa694b5&is=6aa54335&hm=880d4fa88970636351b65b81256ca8bf03366733446490f5b4eeb8cf56899ab9&=&format=webp" alt="Visual 2">
+          </div>
+          <div class="strip-item">
+            <img src="https://media.discordapp.net/attachments/1548278052759277680/1548306943339134976/a034a4a0f650bc5a62c15a35487f0423.jpg?ex=6aa694b5&is=6aa54335&hm=566240d120f4508c43971bfa8ad0d4df1becf3d2fe7d730520a10fc489497a9d&=&format=webp" alt="Visual 3">
+          </div>
+          <div class="strip-item">
+            <img src="https://media.discordapp.net/attachments/1548278052759277680/1548306943620415488/5ff9d3b58b6d742afcc6c21faae40bde.jpg?ex=6aa694b5&is=6aa54335&hm=0517e66e5445341bab17bbfbf19cc231f5e38324a57f3814dd7b3467c90fc7e0&=&format=webp" alt="Visual 4">
+          </div>
+        </div>
+
+        <!-- Banner Bar Widget -->
+        <div class="widget-banner">
+          <span class="dots">✦ ✦ ✦</span>
+          <span>L A P U É</span>
+          <span class="dots">✦ ✦ ✦</span>
+        </div>
+
+      </div>
+
+      <!-- Right Sidebar Column -->
+      <div class="sidebar">
+        
+        <div class="y2k-card side-widget">
+          <h3>Explore</h3>
+          <div class="search-bar">
+            🔍 Search
+          </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="y2k-card side-widget">
+          <h3>Gallery</h3>
+          <p style="font-size: 0.85rem; color: var(--light-pink); opacity: 0.8;">@Catvenox archive</p>
+          <div class="gallery-frame">
+            <img id="random-gallery-img" src="" alt="Random Gallery Display">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Page Modal Overlay -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-box">
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <div class="modal-title" id="modal-category-name">CATEGORY</div>
+      <div class="modal-content-text" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    // Generate Y2K Sparkles
+    const sparkleContainer = document.getElementById('sparkle-container');
+    const starSvg = `<svg class="y2k-star" viewBox="0 0 100 100"><path d="M50 0 C50 35, 65 50, 100 50 C65 50, 50 65, 50 100 C50 65, 35 50, 0 50 C35 50, 50 35, 50 0 Z"/></svg>`;
+
+    for (let i = 0; i < 40; i++) {
+      const div = document.createElement('div');
+      div.innerHTML = starSvg;
+      const star = div.firstElementChild;
+      
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      star.style.animationDuration = `${3 + Math.random() * 4}s`;
+      
+      sparkleContainer.appendChild(star);
+    }
+
+    // List of Gallery Images
+    const galleryImages = [
+      "https://64.media.tumblr.com/099a83f1486c455efa8344a82ca515a3/f3dfe7e18e88890b-c7/s1280x1920/a527625cf55ca41fb4f424ec02c47f175e3bce8d.gif",
+      "https://64.media.tumblr.com/f466f959f43b595e3cd8cc635ca347cf/f3dfe7e18e88890b-33/s1280x1920/3cfcc8c31981ae45dc4364701235712bb4f3a631.gif",
+      "https://64.media.tumblr.com/6431b1bc8852a2855296dabcc8201ea1/f3dfe7e18e88890b-2d/s1280x1920/d8e656e39fb5e2ae53a2698439b97f46559c50d3.gif",
+      "https://64.media.tumblr.com/4e451ed89dd3cd3d27169c0ba263e476/f3dfe7e18e88890b-48/s1280x1920/b4e2771862897b362d7ed1bc97fcec61cb2ac27b.gif",
+      "https://64.media.tumblr.com/e6522afe2fad89250b252cb7f14521d3/b1771883846fbb53-ce/s1280x1920/671e5d5dc0f314c75bcab19d6f12e09b779f5353.gif",
+      "https://64.media.tumblr.com/ebba0056ab761db1537be051880132ac/b1771883846fbb53-86/s1280x1920/b257d8ab0cd41b2aceb6ab64cc3bb39aca62f060.gif",
+      "https://64.media.tumblr.com/45395ee6a425731278696633886b87ae/b1771883846fbb53-7b/s1280x1920/759d42c80eaa0505e74120944f5d06424dcac7bd.gif",
+      "https://64.media.tumblr.com/2b39ba4b5227a51790b097497f46a3b2/b1771883846fbb53-ae/s1280x1920/efebcdbaf958392607296ec7edee5853a5054228.gif"
+    ];
+
+    const randomIndex = Math.floor(Math.random() * galleryImages.length);
+    document.getElementById('random-gallery-img').src = galleryImages[randomIndex];
+
+    // Data Content for Modals
+    const modalData = {
+      'about me': `╭ @catvenox ♡‧₊˚
+┆❝ theyノthem ❞
+┆⋆˚ 🧸 ˖° 19
+┆𐙚 𝐋𝐨𝐯𝐞𝐬: sweets, cats, music
+┆☁︎ 𝐈𝐧𝐭𝐨: sleeping, movies, shopping
+┆🍰 𝐎𝐛𝐬𝐞𝐬𝐬𝐞𝐝 𝐰𝐢𝐭𝐡: desserts & late-night snacks
+╰ ➤ ᥫට 𝐋𝐢𝐯𝐢𝐧𝐠 𝐨𝐧 𝐒𝐧𝐚𝐜𝐤𝐬`,
+
+      'loved one': `Qiao (con), hòn (chồng), cá (bạn nghẹo), mochi (vợ), cici (vợ của con), hera (con crt nợ comm)`
+    };
+
+    // Modal Display Functions
+    const modal = document.getElementById('modal');
+    const modalCategoryName = document.getElementById('modal-category-name');
+    const modalBody = document.getElementById('modal-body');
+
+    function openModal(category) {
+      modalCategoryName.textContent = '♡ ' + category.toUpperCase() + ' ♡';
+      modalBody.textContent = modalData[category] || '';
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
